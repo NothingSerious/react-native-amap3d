@@ -15,7 +15,6 @@ RCT_EXPORT_MODULE()
 
 - (UIView *)view {
     AMapView *mapView = [AMapView new];
-    // mapView.centerCoordinate = CLLocationCoordinate2DMake(39.9242, 116.3979);
     mapView.userTrackingMode = MAUserTrackingModeFollow;
     mapView.zoomLevel = 10;
     mapView.delegate = self;
@@ -158,13 +157,11 @@ RCT_EXPORT_METHOD(setStatus:(nonnull NSNumber *)reactTag params:(NSDictionary *)
     if (mapView.onStatusChange) {
         MAMapStatus *status = mapView.getMapStatus;
         mapView.onStatusChange(@{
-                @"center": @{
-                    @"latitude": @(status.centerCoordinate.latitude),
-                    @"longitude": @(status.centerCoordinate.longitude),
-                },
                 @"zoomLevel": @(status.zoomLevel),
                 @"tilt": @(status.cameraDegree),
                 @"rotation": @(status.rotationDegree),
+                @"latitude": @(status.centerCoordinate.latitude),
+                @"longitude": @(status.centerCoordinate.longitude),
         });
     }
 }
@@ -173,19 +170,13 @@ RCT_EXPORT_METHOD(setStatus:(nonnull NSNumber *)reactTag params:(NSDictionary *)
     if (mapView.onStatusChangeComplete) {
         MAMapStatus *status = mapView.getMapStatus;
         mapView.onStatusChangeComplete(@{
-                @"center": @{
-                    @"latitude": @(status.centerCoordinate.latitude),
-                    @"longitude": @(status.centerCoordinate.longitude),
-                },
-                @"region": @{
-                    @"latitude": @(status.centerCoordinate.latitude),
-                    @"longitude": @(status.centerCoordinate.longitude),
-                    @"latitudeDelta": @(mapView.region.span.latitudeDelta),
-                    @"longitudeDelta": @(mapView.region.span.longitudeDelta),
-                },
                 @"zoomLevel": @(status.zoomLevel),
                 @"tilt": @(status.cameraDegree),
                 @"rotation": @(status.rotationDegree),
+                @"latitude": @(status.centerCoordinate.latitude),
+                @"longitude": @(status.centerCoordinate.longitude),
+                @"latitudeDelta": @(mapView.region.span.latitudeDelta),
+                @"longitudeDelta": @(mapView.region.span.longitudeDelta),
         });
     }
 }
