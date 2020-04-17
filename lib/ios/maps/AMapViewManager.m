@@ -15,7 +15,8 @@ RCT_EXPORT_MODULE()
 
 - (UIView *)view {
     AMapView *mapView = [AMapView new];
-    mapView.centerCoordinate = CLLocationCoordinate2DMake(39.9242, 116.3979);
+    // mapView.centerCoordinate = CLLocationCoordinate2DMake(39.9242, 116.3979);
+    mapView.userTrackingMode = MAUserTrackingModeFollow;
     mapView.zoomLevel = 10;
     mapView.delegate = self;
     return mapView;
